@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "hw-24-drf"
+version = "0.1.0"
+description = ""
+authors = ["Olga Lebedeva <olga.s.lebedeva@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.3"
+psycopg2-binary = "^2.9.9"
+ipython = "^8.22.2"
+pillow = "^10.2.0"
+djangorestframework = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

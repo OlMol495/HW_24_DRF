@@ -1,0 +1,174 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$0hXucGR7RqTyePZpy5kklW$/2OPT3UMEdfgNDvMDCZAGKw7F7z+hT1EO85sEuveO9w=",
+      "last_login": "2024-03-09T10:29:03.375Z",
+      "is_superuser": true,
+      "first_name": "Admin",
+      "last_name": "Pro",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-03-09T10:28:46.145Z",
+      "email": "admin@admin.pro",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "admin",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "James",
+      "last_name": "Jones",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-03-10T12:21:55Z",
+      "email": "james@admin.pro",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "admin",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Bill",
+      "last_name": "Snow",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-03-10T12:23:04Z",
+      "email": "bill@admin.pro",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "password": "admin",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Lorie",
+      "last_name": "Stanley",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-03-10T12:23:52Z",
+      "email": "lorie@admin.pro",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "password": "admin",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Melany",
+      "last_name": "Trump",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-03-10T12:24:43Z",
+      "email": "melany@admin.pro",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "payment_date": "2024-03-01",
+      "course": 3,
+      "lesson": null,
+      "amount": "50000.00",
+      "payment_method": "Наличные"
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 2,
+    "fields": {
+      "user": 4,
+      "payment_date": "2024-03-07",
+      "course": null,
+      "lesson": 3,
+      "amount": "5000.00",
+      "payment_method": "Перевод"
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "payment_date": "2024-02-01",
+      "course": 4,
+      "lesson": null,
+      "amount": "60000.00",
+      "payment_method": "перевод"
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "payment_date": "2023-12-20",
+      "course": null,
+      "lesson": 8,
+      "amount": "5000.00",
+      "payment_method": "перевод"
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 5,
+    "fields": {
+      "user": 4,
+      "payment_date": "2023-09-01",
+      "course": 5,
+      "lesson": null,
+      "amount": "70000.00",
+      "payment_method": "перевод"
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 6,
+    "fields": {
+      "user": 4,
+      "payment_date": "2024-02-28",
+      "course": null,
+      "lesson": 4,
+      "amount": "6000.00",
+      "payment_method": "наличные"
+    }
+  }
+]

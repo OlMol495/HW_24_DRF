@@ -1,9 +1,10 @@
 from django.db import models
 
-from users.models import NULLABLE
 
+NULLABLE = {'blank': True, 'null': True}
 
 class Course(models.Model):
+    """модель курса"""
     title = models.CharField(max_length=250, verbose_name='название курса')
     description = models.TextField(**NULLABLE, verbose_name='описание курса')
     image = models.ImageField(upload_to='course_images/', **NULLABLE, verbose_name='превью курса')
@@ -17,6 +18,7 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
+    """модель урока"""
     title = models.CharField(max_length=250, verbose_name='название урока')
     description = models.TextField(**NULLABLE, verbose_name='описание урокаа')
     image = models.ImageField(upload_to='course_images/', **NULLABLE, verbose_name='превью урока')

@@ -7,6 +7,7 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class User(AbstractUser):
+    """Модель пользователя"""
     username = None
     email = models.EmailField(unique=True, verbose_name='Имейл')
     phone = models.CharField(max_length=25, verbose_name='Телефон', **NULLABLE)
@@ -18,7 +19,7 @@ class User(AbstractUser):
 
 
 class Payment(models.Model):
-    """модель отдельного платежа, привязанного к студенту и цели оплаты"""
+    """Модель отдельного платежа, привязанного к студенту и цели оплаты"""
 
     CASH = "Наличные"
     BANK = "Перевод"

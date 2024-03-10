@@ -5,7 +5,7 @@ from materials.serializers.course import CourseSerializer, CourseDetailSerialize
 
 
 class CourseViewSet(viewsets.ModelViewSet):
-    """вьюшка для модели курса"""
+    """Вьюшка для модели курса"""
     queryset = Course.objects.all()
     default_serializer = CourseSerializer
     serializers = {
@@ -13,7 +13,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     }
 
     def get_serializer_class(self):
-        """переопределение сериализатора на просмотр деталей курса"""
+        """Переопределение сериализатора на просмотр деталей курса"""
         return self.serializers.get(self.action, self.default_serializer)
 
 

@@ -12,8 +12,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class PaymentSerializer(serializers.ModelSerializer):
-    course = SlugRelatedField(slug_field='title', queryset=Course.objects.all())
-    lesson = SlugRelatedField(slug_field='title', queryset=Lesson.objects.all())
+    course = SlugRelatedField(slug_field='title', queryset=Course.objects.all()) #Отображение название курса
+    lesson = SlugRelatedField(slug_field='title', queryset=Lesson.objects.all()) #Отображение названия урока
     #user = SlugRelatedField(slug_field='email', queryset=User.objects.all())
 
     class Meta:
@@ -22,10 +22,11 @@ class PaymentSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    payments = serializers.SerializerMethodField()
+    payments = serializers.SerializerMethodField() #Отображение дополнительного поля с платежами
 
     def get_payments(self, user):
-       return PaymentSerializer(Payment.objects.filter(user=user), many=True).data
+        """передача в платежи всех данных из сериалайзера платежей"""
+        return PaymentSerializer(Payment.objects.filter(user=user), many=True).data
 
 
     class Meta:

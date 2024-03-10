@@ -7,21 +7,24 @@ from rest_framework.filters import OrderingFilter
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """Вывод данных по юзерам с кастомизированной вьюшкой на детали юзера"""
     queryset = User.objects.all()
-    default_serializer = UserSerializer
+    default_serializer = UserSerializer #Дофолтный сериалайзер
     serializers = {
-        'retrieve': UserProfileSerializer
+        'retrieve': UserProfileSerializer  #Детали юзера выводятся по UserProfileSerializer
     }
 
     def get_serializer_class(self):
+        """Return appropriate serializer"""
         return self.serializers.get(self.action, self.default_serializer)
 
 class PaymentListAPIView(generics.ListAPIView):
+    """Сериалайзер для списка платежей"""
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
-    filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ('course', 'lesson', 'payment_method',)
-    ordering_fields = ('payment_date',)
+    filter_backends = [DjangoFilterBackend, OrderingFilter] #Опция фильтрации и сортировки
+    filterset_fields = ('course', 'lesson', 'payment_method',) #Поля для фильтрации
+    ordering_fields = ('payment_date',) #Поля для сортировки
 
 
 class UserProfileAPIView(generics.RetrieveAPIView):

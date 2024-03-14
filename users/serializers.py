@@ -33,6 +33,16 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'phone', 'city', 'avatar', 'payments']
 
+    # def to_representation(self, instance):
+    #     """Modify the output data format based on the current user."""
+    #     ret = super().to_representation(instance)
+    #     # Check if the current user is viewing their own profile
+    #     if self.context['request'].user != instance:
+    #         # If not, remove sensitive information
+    #         ret.pop('payments', None)
+    #
+    #     return ret
+
 
 class UserPublicProfileSerializer(serializers.ModelSerializer):
 

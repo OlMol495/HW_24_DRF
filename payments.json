@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$720000$0hXucGR7RqTyePZpy5kklW$/2OPT3UMEdfgNDvMDCZAGKw7F7z+hT1EO85sEuveO9w=",
-      "last_login": "2024-03-09T10:29:03.375Z",
+      "last_login": "2024-03-14T14:52:34.776Z",
       "is_superuser": true,
       "first_name": "Admin",
       "last_name": "Pro",
@@ -15,6 +15,7 @@
       "phone": null,
       "city": null,
       "avatar": "",
+      "role": "moderator",
       "groups": [],
       "user_permissions": []
     }
@@ -23,7 +24,7 @@
     "model": "users.user",
     "pk": 2,
     "fields": {
-      "password": "admin",
+      "password": "pbkdf2_sha256$720000$2HygcvN9CjOe0amXAcv97R$wkaiRdw1tKF+rYKrqqbN46w2DdKSec/EPW/q0EfPRu0=",
       "last_login": null,
       "is_superuser": false,
       "first_name": "James",
@@ -35,6 +36,7 @@
       "phone": null,
       "city": null,
       "avatar": "",
+      "role": "member",
       "groups": [],
       "user_permissions": []
     }
@@ -43,7 +45,7 @@
     "model": "users.user",
     "pk": 3,
     "fields": {
-      "password": "admin",
+      "password": "pbkdf2_sha256$720000$q33JaqwY0dZGyqaXh99NnC$QHJB7C2HIyu1pp1O2ojwP37Ei3cH4gwrc3pGx45dHvw=",
       "last_login": null,
       "is_superuser": false,
       "first_name": "Bill",
@@ -55,6 +57,7 @@
       "phone": null,
       "city": null,
       "avatar": "",
+      "role": "member",
       "groups": [],
       "user_permissions": []
     }
@@ -63,7 +66,7 @@
     "model": "users.user",
     "pk": 4,
     "fields": {
-      "password": "admin",
+      "password": "pbkdf2_sha256$720000$1pZOYMwgQH1Svgjgpmva47$+LZlTuK+a/wnADxgauJPs8S9oJ+UcLjfDwLnffHi4sw=",
       "last_login": null,
       "is_superuser": false,
       "first_name": "Lorie",
@@ -75,6 +78,7 @@
       "phone": null,
       "city": null,
       "avatar": "",
+      "role": "member",
       "groups": [],
       "user_permissions": []
     }
@@ -83,7 +87,7 @@
     "model": "users.user",
     "pk": 5,
     "fields": {
-      "password": "admin",
+      "password": "pbkdf2_sha256$720000$bDmI2Zig0OF0V8AYqRwwQw$TVr2GqGYZDqudtotFrsfBxuhEPX0gz1mB3tprtevL4U=",
       "last_login": null,
       "is_superuser": false,
       "first_name": "Melany",
@@ -95,6 +99,7 @@
       "phone": null,
       "city": null,
       "avatar": "",
+      "role": "member",
       "groups": [],
       "user_permissions": []
     }

@@ -31,10 +31,19 @@ class PaymentListAPIView(generics.ListAPIView):
 
 
 class UserProfileAPIView(generics.RetrieveAPIView):
-    serializer_class = UserProfileSerializer
+    #serializer_class = UserProfileSerializer
     queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         user = super().get_object()
         user.payments = user.payment_set.all()
         return user
+
+    def get_serializer_class(self):
+        if self.request.user == self.get_object():
+            return UserProfileSerializer
+        return UserPublicProfileSerializer
+
+
+

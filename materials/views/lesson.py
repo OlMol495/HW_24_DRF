@@ -2,6 +2,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
 from materials.models import Lesson
+from materials.paginators import ListPaginator
 from materials.permissions import IsModerator, IsOwner
 from materials.serializers.lesson import LessonSerializer, LessonListSerializer, LessonDetailSerializer
 
@@ -23,6 +24,7 @@ class LessonListAPIView(generics.ListCreateAPIView):
     serializer_class = LessonListSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated]
+    pagination_class = ListPaginator
 
 
 class LessonRetrieveAPIView(generics.RetrieveAPIView):
@@ -42,4 +44,5 @@ class LessonUpdateAPIView(generics.UpdateAPIView):
 class LessonDestroyAPIView(generics.DestroyAPIView):
     """вьюшка на удаление урока"""
     serializer_class = LessonSerializer
+    queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated, ~IsModerator | IsOwner]  # доступ имеют авторизованные пользователи, но не модер

@@ -10,7 +10,7 @@ class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = '__all__'
-        validator = [
+        validators = [
             ValidateVideoLink(field='video_link')
         ]
 

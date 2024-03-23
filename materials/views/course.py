@@ -2,6 +2,7 @@ from rest_framework import viewsets, serializers
 from rest_framework.permissions import IsAuthenticated
 
 from materials.models import Course, Lesson
+from materials.paginators import ListPaginator
 from materials.permissions import IsModerator, IsOwner
 from materials.serializers.course import CourseSerializer, CourseDetailSerializer
 
@@ -14,6 +15,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializers = {
         'retrieve': CourseDetailSerializer
     }
+    pagination_class = ListPaginator
 
     def get_serializer_class(self):
         """Переопределение сериализатора на просмотр деталей курса"""
@@ -24,9 +26,9 @@ class CourseViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             self.permission_classes = [IsAuthenticated, ~IsModerator]
         elif self.action == 'list':
-            self.permission_classes = [IsAuthenticated, IsOwner | IsModerator]
+            self.permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve':
-            self.permission_classes = [IsAuthenticated, IsOwner | IsModerator]
+            self.permission_classes = [IsAuthenticated]
         elif self.action == 'update':
             self.permission_classes = [IsAuthenticated, IsOwner | IsModerator]
         elif self.action == 'destroy':

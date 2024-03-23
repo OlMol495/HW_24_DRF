@@ -1,24 +1,34 @@
 from rest_framework import serializers
 
-from materials.models import Course, Lesson
+from materials.models import Course, Lesson, Subscription
 from materials.serializers.lesson import LessonSerializer
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    """Базовый сериализатор для курса"""
+    """ Базовый сериализатор для курса """
     class Meta:
         model = Course
         fields = '__all__'
 
+
 class CourseDetailSerializer(serializers.ModelSerializer):
-    """Сериализатор для просмотра деталей курса"""
+    """ Сериализатор для просмотра деталей курса """
     lesson_count = serializers.SerializerMethodField() #количество уроков в курсе
     lessons = LessonSerializer(source='lesson_set', many=True)
+    subscription = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
         fields = '__all__'
 
     def get_lesson_count(self, course):
-        """Вычисление количества уроков в курсе"""
+        """ Вычисление количества уроков в курсе """
         return Lesson.objects.filter(course=course).count()
+
+    def get_subscription(self, instance):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            return Subscription.objects.filter(user=user, course=instance).exists()
+        return False
+
+

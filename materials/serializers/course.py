@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from materials.models import Course, Lesson, Subscription
 from materials.serializers.lesson import LessonSerializer
+from payments.models import CoursePrice
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -16,6 +17,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
     lesson_count = serializers.SerializerMethodField() #количество уроков в курсе
     lessons = LessonSerializer(source='lesson_set', many=True)
     subscription = serializers.SerializerMethodField()
+    # prices = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
@@ -31,4 +33,6 @@ class CourseDetailSerializer(serializers.ModelSerializer):
             return Subscription.objects.filter(user=user, course=instance).exists()
         return False
 
-
+    # def get_prices(self, instance):
+    #     prices = CoursePrice.objects.filter(course=instance)
+    #     return prices

@@ -5,6 +5,7 @@ from materials.models import Course, Lesson
 from materials.paginators import ListPaginator
 from materials.permissions import IsModerator, IsOwner
 from materials.serializers.course import CourseSerializer, CourseDetailSerializer
+from payments.models import CoursePrice
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -41,5 +42,14 @@ class CourseViewSet(viewsets.ModelViewSet):
         new_course.owner = self.request.user
         new_course.save()
 
+    def get_context_data(self, **kwargs):
+        context = super().self.get_context_data()
+        context["prices"] = CoursePrice.objects.filter(course=self.get_object())
+        return context
 
-
+    # def get_serializer_context(self):
+    #     # Get the original context data
+    #     context = super().get_serializer_context()
+    #     # Add anything else you want to include
+    #     context['prices'] = CoursePrice.objects.filter(course=self.get_object())
+    #     return context

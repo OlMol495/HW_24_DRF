@@ -1,11 +1,15 @@
-from rest_framework import viewsets, serializers
-from rest_framework.permissions import IsAuthenticated
 
-from materials.models import Course, Lesson
+from rest_framework import viewsets, serializers, status
+from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+from materials.models import Course, Lesson, Subscription
 from materials.paginators import ListPaginator
 from materials.permissions import IsModerator, IsOwner
 from materials.serializers.course import CourseSerializer, CourseDetailSerializer
 from payments.models import CoursePrice
+from materials.tasks import course_update_mail
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -17,6 +21,10 @@ class CourseViewSet(viewsets.ModelViewSet):
         'retrieve': CourseDetailSerializer
     }
     pagination_class = ListPaginator
+
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
+
 
     def get_serializer_class(self):
         """Переопределение сериализатора на просмотр деталей курса"""
@@ -46,6 +54,27 @@ class CourseViewSet(viewsets.ModelViewSet):
         context = super().self.get_context_data()
         context["prices"] = CoursePrice.objects.filter(course=self.get_object())
         return context
+
+    # def update(self, request, *args, **kwargs):
+    #     course_id = self.kwargs.get('pk')
+    #     course = get_object_or_404(Course, id=course_id)
+    #
+    #     for field in request.data:
+    #         if hasattr(course, field):
+    #             setattr(course, field, request.data.get(field))
+    #
+    #     course.save()
+    #
+    #     subscriptions = Subscription.objects.filter(course=course).select_related('user', 'course')
+    #     for subscription in subscriptions:
+    #         course_update_notification.delay(subscription.course.title, subscription.user.email)
+    #     return Response({'message': f'курс "{course}" обновлен'}, status=status.HTTP_200_OK)
+
+    def perform_update(self, serializer):
+        course_update = serializer.save()
+        course_id = self.kwargs['pk']
+        course_update.save()
+        course_update_mail.delay(course_id)
 
     # def get_serializer_context(self):
     #     # Get the original context data

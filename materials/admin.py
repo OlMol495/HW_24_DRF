@@ -1,5 +1,5 @@
 from django.contrib import admin
-from materials.models import Course, Lesson
+from materials.models import Course, Lesson, Subscription
 from payments.admin import AdminCoursePrice
 
 
@@ -12,3 +12,7 @@ class AdminCourse(admin.ModelAdmin):
 @admin.register(Lesson)
 class AdminLesson(admin.ModelAdmin):
     list_display = ('title', 'description', 'image', 'video_link', 'course',)
+
+@admin.register(Subscription)
+class AdminSubscription(admin.ModelAdmin):
+    list_display = ('user', 'course',)

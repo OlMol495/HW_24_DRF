@@ -40,6 +40,8 @@ services:
     depends_on:
       - redis
       - db
+    env_file:
+      - .env
 
   celery_beat:
     build: .
@@ -49,6 +51,8 @@ services:
     depends_on:
       - redis
       - db
+    env_file:
+      - .env
 
 volumes:
   pg_data:

@@ -2,9 +2,10 @@ version: "3"
 
 services:
   redis:
-    image: redis
-    ports:
-      - '6379:6379'
+    image: redis:latest
+    restart: on-failure
+    expose:
+      - "6379"
   db:
     image: postgres
     restart: on-failure
@@ -35,7 +36,7 @@ services:
   celery:
     build: .
     tty: true
-    command: celery -A config worker -l INFO
+    command: celery -A config worker -l INFO  -P eventlet
     depends_on:
       - redis
       - db

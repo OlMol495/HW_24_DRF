@@ -2,12 +2,13 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from materials.models import Lesson, Course, Subscription
+from materials.models import Lesson, Course
 from users.models import User
 
 
 class LessonTestCase(APITestCase):
     """ Тесты на CRUD урока """
+
     def setUp(self):
         self.user = User.objects.create(email="test@admin.pro", password="admin")
         self.user2 = User.objects.create(email="test2@admin.pro", password="admin")
@@ -53,6 +54,7 @@ class LessonTestCase(APITestCase):
         self.assertTrue(
             Lesson.objects.all().exists()
         )
+
     def test_list_lesson(self):
         """ Тесты на список уроков """
         self.client.force_authenticate(user=self.user)
@@ -135,7 +137,6 @@ class LessonTestCase(APITestCase):
         response = self.client.post(reverse('materials:lesson-create'), data=data)
         lesson_id = response.data['id']
 
-
         # Проверка на невозможность удаления урока сторонним пользователем
         self.client.force_authenticate(user=self.user2)
         delete_lesson = self.client.delete(reverse('materials:lesson-delete', args=[lesson_id]))
@@ -156,8 +157,10 @@ class LessonTestCase(APITestCase):
             get_deleted_lesson.status_code, status.HTTP_404_NOT_FOUND
         )
 
+
 class SubscriptionTests(APITestCase):
     """ Тесты на эндпойнты подписки"""
+
     def setUp(self):
         self.user = User.objects.create(email="test@admin.pro", password="admin")
         self.course = Course.objects.create(
@@ -186,9 +189,8 @@ class SubscriptionTests(APITestCase):
         self.client.force_authenticate(user=self.user)
         data = {"user": self.user.id, "course": self.course.id}
         self.client.post(reverse("materials:subscription"), data=data
-        )
-        #subscription_id = response.data['id']
-
+                         )
+        # subscription_id = response.data['id']
 
         delete_response = self.client.post(
             reverse("materials:subscription"), data=data

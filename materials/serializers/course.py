@@ -7,6 +7,7 @@ from payments.models import CoursePrice
 
 class CourseSerializer(serializers.ModelSerializer):
     """ Базовый сериализатор для курса """
+
     class Meta:
         model = Course
         fields = '__all__'
@@ -14,9 +15,10 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class CourseDetailSerializer(serializers.ModelSerializer):
     """ Сериализатор для просмотра деталей курса """
-    lesson_count = serializers.SerializerMethodField() #количество уроков в курсе
+    lesson_count = serializers.SerializerMethodField()  # количество уроков в курсе
     lessons = LessonSerializer(source='lesson_set', many=True)
     subscription = serializers.SerializerMethodField()
+
     # prices = serializers.SerializerMethodField()
 
     class Meta:
@@ -30,7 +32,8 @@ class CourseDetailSerializer(serializers.ModelSerializer):
     def get_subscription(self, instance):
         user = self.context['request'].user
         if user.is_authenticated:
-            return Subscription.objects.filter(user=user, course=instance).exists()
+            return Subscription.objects.filter(
+                user=user, course=instance).exists()
         return False
 
     # def get_prices(self, instance):
